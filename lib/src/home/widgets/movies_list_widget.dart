@@ -61,11 +61,19 @@ class ListMoviesWidget extends StatelessWidget {
               }
               return Padding(
                 padding: const EdgeInsets.all(10),
-                child: Wrap(
-                  alignment: WrapAlignment.start,
-                  spacing: 10,
-                  runSpacing: 20,
-                  children: new ItemMovie().itemMovie(context, snapshot.data),
+                child: Column(
+                  children: <Widget>[
+                    Wrap(
+                      alignment: WrapAlignment.start,
+                      spacing: 10,
+                      runSpacing: 20,
+                      children: new ItemMovie().itemMovie(context, snapshot.data),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: CircularProgressIndicator(),
+                    ),
+                  ],
                 ),
               );
             }),

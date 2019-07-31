@@ -26,10 +26,15 @@ class ItemMovie {
                       errorWidget: (context, url, error) =>
                           Center(child: new Icon(Icons.error)),
                     )
-                  : Image.asset("assets/img/no-image.jpg"),
+                  : Image.asset(
+                      "assets/img/no-image.jpg",
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height / 3,
+                    ),
               Padding(
                 padding: const EdgeInsets.all(8),
-                child: Text(m.originalTitle,
+                child: Text(
+                  m.originalTitle,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(fontSize: 16),
                 ),

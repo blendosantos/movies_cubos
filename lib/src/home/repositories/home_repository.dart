@@ -22,13 +22,12 @@ class HomeRepository extends Disposable {
     return _result;
   }
 
-  Future<List<Movie>> findbyGenreAndTerm(String query, {int page}) async {
+  Future<List<Movie>> findbyGenreAndTerm(String query) async {
     List<Movie> _result = new List<Movie>();
     Response respose = await _dio.get(URL_API +
         "search/movie" +
         token +
         "&language=pt-BR" +
-        (page != null ? "&page=" + page.toString() : "") +
         "&query=" +
         query);
     respose.data['results'].forEach((v) {

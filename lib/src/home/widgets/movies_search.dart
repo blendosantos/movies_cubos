@@ -52,7 +52,7 @@ class MoviesSearch extends SearchDelegate {
         child: StreamBuilder<List<Movie>>(
             stream: _homeBloc.outSearchMovie,
             builder: (context, snapshot) {
-              if (!snapshot.hasData) return Container();
+              if (!snapshot.hasData) return CircularProgressIndicator();
               return Padding(
                 padding: const EdgeInsets.all(10),
                 child: Wrap(

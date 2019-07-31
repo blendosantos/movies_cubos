@@ -29,7 +29,6 @@ class HomeBloc extends BlocBase {
   final _fictionController = BehaviorSubject<List<Movie>>();
   Stream<List<Movie>> get outFiction => _fictionController.stream;
 
-  List<Movie> _search = new List<Movie>();
   final _searchMovieController = BehaviorSubject<List<Movie>>();
   Stream<List<Movie>> get outSearchMovie => _searchMovieController.stream;
 
@@ -70,10 +69,9 @@ class HomeBloc extends BlocBase {
     _fictionController.add(_fiction);
   }
 
-  Future<void> listenerSearch(String query, {int page}) async{
-    List<Movie> movies = await _homeRepository.findbyGenreAndTerm(query, page: page);
-    _search.addAll(movies);
-    _searchMovieController.add(_search);
+  Future<void> listenerSearch(String query) async{
+    List<Movie> movies = await _homeRepository.findbyGenreAndTerm(query);
+    _searchMovieController.add(movies);
   }
 
   @override
