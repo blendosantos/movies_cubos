@@ -5,7 +5,6 @@ import 'package:cubos_movie_flutter/src/home/widgets/movie_detail_widget.dart';
 import 'package:flutter/material.dart';
 
 class ItemMovie {
-
   List<Widget> itemMovie(BuildContext context, List<Movie> movies) {
     List<Widget> widgets = new List<Widget>();
     movies.forEach((m) {
@@ -18,24 +17,28 @@ class ItemMovie {
             children: <Widget>[
               m.posterPath != null
                   ? CachedNetworkImage(
-                imageUrl: URL_IMAGE_W200 + m.posterPath,
-                placeholder: (context, url) =>
-                    Center(child: new CircularProgressIndicator()),
-                errorWidget: (context, url, error) =>
-                    Center(child: new Icon(Icons.error)),
-              )
+                      imageUrl: URL_IMAGE_W200 + m.posterPath,
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height / 3,
+                      fit: BoxFit.fill,
+                      placeholder: (context, url) =>
+                          Center(child: new CircularProgressIndicator()),
+                      errorWidget: (context, url, error) =>
+                          Center(child: new Icon(Icons.error)),
+                    )
                   : Image.asset("assets/img/no-image.jpg"),
               Padding(
                 padding: const EdgeInsets.all(8),
-                child: Text(
-                  m.originalTitle,
+                child: Text(m.originalTitle,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(fontSize: 16),
                 ),
               )
             ],
           ),
-          onTap: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => MovieDetailWidget(m)));
+          onTap: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => MovieDetailWidget(m)));
           },
         ),
       );
@@ -43,5 +46,4 @@ class ItemMovie {
     });
     return widgets;
   }
-
 }
